@@ -1,4 +1,4 @@
-package com.karaoke.Song;
+package com.karaoke.model;
 
 public class Song {
   private String artist;
