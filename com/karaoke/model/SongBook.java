@@ -10,4 +10,8 @@ public class SongBook {
     songs = new ArrayList<Song>();
   } 
   
+  public void addSong(Song song) {
+    songs.add(song);
+  }
+  
 }
