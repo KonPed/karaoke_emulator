@@ -16,7 +16,7 @@ public class KaraokeMachine {
   private SongBook songBook;
   private BufferedReader bf;
   private Map<String, String> menu;
-  private Queue songQueue;
+  private Queue<Song> songQueue;
   
   public KaraokeMachine(SongBook songBook) {
     this.songBook = songBook;
@@ -24,6 +24,7 @@ public class KaraokeMachine {
     bf = new BufferedReader(new InputStreamReader(System.in));
     menu = new HashMap<String, String>();
     menu.put("add", "Add a new song to the song book");
+    menu.put("play", "Play the next song in the queue");
     menu.put("choose", "Choose a song to sing!");
     menu.put("quit", "Give up. Exit the program");
   }
@@ -54,6 +55,9 @@ public class KaraokeMachine {
           Song artistSong = promptSongForArtist(artist);
           songQueue.add(artistSong);
           System.out.printf("You chose: %s %n", artistSong);
+          break;
+          case "play":
+          playNext();
           break;
           case "quit":
           bf.close();
@@ -107,6 +111,15 @@ public class KaraokeMachine {
     System.out.printf("Available songs for %s %n", artist);
     int index = promptForIndex(titles);
     return songs.get(index);
-  } 
+  }
+  
+  public void playNext() {
+    Song song = songQueue.poll();
+    if(song == null) {
+      System.out.println("Sorry there are no songs in the queue. Use choose from the menu to add some.");
+    } else {
+      System.out.printf("%n%n%n Open %s to hear %s by %s %n%n%n", song.getVideoUrl(), song.getTitle(), song.getArtist());
+    }
+  }
   
 }
