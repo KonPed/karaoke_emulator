@@ -66,4 +66,16 @@ public class KaraokeMachine {
     return new Song(artist, title, videoUrl);
   }
   
+  private int promptForIndex(List<String> options) throws IOException {
+    int counter = 1;
+    for(String option : options) {
+      System.out.printf("%d.) %s %n", counter, option);
+      counter++;
+    }
+    String optionAsString = bf.readLine();
+    int choice = Integer.parseInt(optionAsString.trim());
+    System.out.print("Your choice:  ");
+    return choice - 1;
+  }
+  
 }
