@@ -1,6 +1,7 @@
 package com.karaoke;
 
-import com.karaoke.model.Songbook;
+import com.karaoke.model.Song;
+import com.karaoke.model.SongBook;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -31,13 +32,15 @@ public class KaraokeMachine {
   }
   
   public void run() {
-    String choice;
+    String choice = "";
     do{
       try {
       choice = promptAction();
         switch(choice) {
           case "add":
-          // TODO: Add a new song
+          Song song = promptNewSong();
+          songBook.addSong(song);
+          System.out.printf("%s added!  %n%n", song);
           break;
           case "quit":
           System.out.println("Thanks for playing");
@@ -50,6 +53,16 @@ public class KaraokeMachine {
         e.printStackTrace();
       }
     }while(!choice.equals("quit"));
+  }
+  
+  private Song promptNewSong() throws IOException {
+    System.out.print("Enter the artist's name: ");
+    String artist = bf.readLine();
+    System.out.print("Enter the title: ");
+    String title = bf.readLine();
+    System.out.print("Enter the video URL: ");
+    String videoUrl = bf.readLine();
+    return new Song(artist, title, videoUrl);
   }
   
 }
