@@ -43,6 +43,7 @@ public class KaraokeMachine {
           System.out.printf("%s added!  %n%n", song);
           break;
           case "quit":
+          bf.close();
           System.out.println("Thanks for playing");
           break;
           default :
