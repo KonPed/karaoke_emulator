@@ -1,9 +1,9 @@
 package com.karaoke.model;
 
 public class Song {
-  private String artist;
-  private String title;
-  private String videoUrl;
+  protected String artist;
+  protected String title;
+  protected String videoUrl;
   
   public Song(String artist, String title, String videoUrl) {
     this.artist = artist;
